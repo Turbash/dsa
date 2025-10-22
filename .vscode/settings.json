@@ -8,6 +8,7 @@
         "algorithm": "cpp",
         "flat_map": "cpp",
         "flat_set": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "string": "cpp"
     }
 }
