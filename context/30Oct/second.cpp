@@ -1,61 +1,82 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool check(vector<int> &row,vector<int> &col){
-    for(auto r:row){
-        if(count(row.begin(),row.end(),r)>1){
-            return true;
-            cout<<count(row.begin(),row.end(),r)<<endl;
+bool check(vector<string> &a){
+    map<int,int> rowcount;
+    map<int,int> colcount;
+    for(int i=0;i<a.size();i++){
+        for(int j=0;j<a[i].size();j++){
+            if(a[i][j]=='#'){
+                rowcount[i]++;
+                colcount[j]++;
+            }
         }
     }
-    for(auto c:col){
-        if(count(col.begin(),col.end(),c)>1){
+    for(auto it:rowcount){
+        if(it.second>=2){
             return true;
         }
-        cout<<count(col.begin(),col.end(),c)<<endl;
+    }
+    for(auto it:colcount){
+        if(it.second>=2){
+            return true;
+        }
     }
     return false;
 }
 
-bool cantravel(vector<int> &row,vector<int> &col){
-    sort(row.begin(),row.end());
-    sort(col.begin(),col.end());
-    for(int i=1;i<row.size();i++){
-        if(abs(row[i]-row[i-1])>1){
-            return false;
-        }
-    }
-    for(int i=1;i<col.size();i++){
-        if(abs(col[i]-col[i-1])>1){
-            return false;
+bool cantravel(vector<string> &a){
+    for(int i=0;i<a.size();i++){
+        for(int j=0;j<a[i].size();j++){
+            if(a[i][j]=='#'){
+                bool left=false,right=false,up=false,down=false;
+                if(i+1<a.size() && a[i+1][j]=='#'){
+                    right=true;
+                }
+                if(j+1<a[i].size() && a[i][j+1]=='#'){
+                    down=true;
+                }
+                if(i-1>=0 && a[i-1][j]=='#'){
+                    left=true;
+                }
+                if(j-1>=0 && a[i][j-1]=='#'){
+                    up=true;
+                }
+                if(!(left || right || up || down)){
+                    return false;
+                }
+            }
         }
     }
     return true;
 }
 
 bool threeconsecutiverowsorcols(vector<string> &a){
-    int n=a.size();
-    for(int i=0;i<n;i++){
-        int countrow=0;
-        int countcol=0;
-        for(int j=0;j<n;j++){
+    for(int i=0;i<a.size();i++){
+        int count=0;
+        for(int j=0;j<a[i].size();j++){
             if(a[i][j]=='#'){
-                countrow++;
-                if(countrow>=3){
+                count++;
+                if(count==3){
                     return true;
                 }
             }
             else{
-                countrow=0;
+                count=0;
             }
-            if(a[j][i]=='#'){
-                countcol++;
-                if(countcol>=3){
+        }
+    }
+    for(int j=0;j<a[0].size();j++){
+        int count=0;
+        for(int i=0;i<a.size();i++){
+            if(a[i][j]=='#'){
+                count++;
+                if(count==3){
                     return true;
                 }
             }
             else{
-                countcol=0;
+                count=0;
             }
         }
     }
@@ -69,16 +90,12 @@ int main(){
         int n;
         cin>>n;
         vector<string> a(n);
-        vector<int> row;
-        vector<int> col;
         for(int i=0;i<n;i++){
             cin>>a[i];
         }
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 if(a[i][j]=='#'){
-                    row.push_back(i);
-                    col.push_back(j);
                 }
             }
         }
@@ -86,11 +103,11 @@ int main(){
             cout<<"NO"<<endl;
             continue;
         }
-        if(cantravel(row,col)){
+        if(cantravel(a)){
             cout<<"YES"<<endl;
             continue;
         }
-        if(check(row,col)){
+        if(check(a)){
             cout<<"NO"<<endl;
         }
         else{
