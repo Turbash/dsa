@@ -1,9 +1,9 @@
-# Competetive Programming Repository
+# Competetive Programming Repo
 
 ## This is my repo of my attempt to become a good competetive programmer
 
-This is a part of the CP Challenge 2.0 organised by the C.o.L.D Club, School of Engineering.
+This was started intially as a part of the CP Challenge 2.0 organised by the C.o.L.D Club, School of Engineering.
 
-I solve questions from teh CP-31 sheet of tle-eliminators, and participate in contests regularly on codeforces.
+I solve questions from the CP-31 sheet of tle-eliminators, and participate in contests regularly on codeforces. I also do some dsa question on leetcode and participate in contests there as well.
 
-I have little experience of Competetive Programming before this. I am looking forward to a great start into the world of competetive programming.
+I had little experience of Competetive Programming before this. I got a good start into the world of competetive programming. Now looking forward to be great at cp and dsa.
