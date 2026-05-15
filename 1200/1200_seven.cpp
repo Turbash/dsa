@@ -8,53 +8,28 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long n;
-        cin >> n;
-        vector<int> a(n);
+        long long n, m;
+        cin >> n >> m;
+        vector<vector<int>> a(m, vector<int>(n));
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
-        }
-        int minELe = 1;
-        int maxEle = n;
-        int l = 0;
-        int r = n - 1;
-        while (l < r - 3)
-        {
-            if (a[l] == minELe || a[r] == minELe)
+            for (int j = 0; j < m; j++)
             {
-                if (a[l] == minELe)
-                {
-                    l++;
-                }
-                else
-                {
-                    r--;
-                }
-                minELe++;
-            }
-            if (a[l] == maxEle || a[r] == maxEle)
-            {
-                if (a[l] == maxEle)
-                {
-                    l++;
-                }
-                else
-                {
-                    r--;
-                }
-                maxEle--;
-            }
-            if (a[l] != minELe && a[l] != maxEle && a[r] != minELe && a[r] != maxEle)
-            {
-                break;
+                cin >> a[j][i];
             }
         }
-        if (a[l] == minELe || a[r] == minELe || a[l] == maxEle || a[r] == maxEle)
-        {
-            cout << -1 << endl;
+        long long ans = 0;
+        for(int i=0;i<m;i++){
+            sort(a[i].begin(), a[i].end());
         }
-        else
-            cout << l + 1 << " " << r + 1 << endl;
+        for(int i=0;i<m;i++) {
+            long long sum = 0;
+            for(int j=0;j<n;j++) {
+                ans -= sum;
+                ans+= 1LL * a[i][j] * j;
+                sum += a[i][j];
+            }
+        }
+        cout << ans << endl;
     }
 }

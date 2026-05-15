@@ -15,46 +15,37 @@ int main()
         {
             cin >> a[i];
         }
-        int minELe = 1;
-        int maxEle = n;
-        int l = 0;
-        int r = n - 1;
-        while (l < r - 3)
-        {
-            if (a[l] == minELe || a[r] == minELe)
-            {
-                if (a[l] == minELe)
-                {
-                    l++;
+        int decSeq = 0;
+        int incSeq = 0;
+        int ans = 1;
+        int i =1;
+        while(i<n){
+            if(a[i]>a[i-1]){
+                if(incSeq==1){
+                    i++;
                 }
-                else
-                {
-                    r--;
+                else{
+                    incSeq=1;
+                    ans++;
                 }
-                minELe++;
+                decSeq=0;
             }
-            if (a[l] == maxEle || a[r] == maxEle)
-            {
-                if (a[l] == maxEle)
-                {
-                    l++;
+            else if(a[i]<a[i-1]){
+                if(decSeq==1){
+                    i++;
                 }
-                else
-                {
-                    r--;
+                else{
+                    decSeq=1;
+                    ans++;
                 }
-                maxEle--;
+                incSeq=0;
             }
-            if (a[l] != minELe && a[l] != maxEle && a[r] != minELe && a[r] != maxEle)
-            {
-                break;
+            else{
+                while(i<n && a[i]==a[i-1]){
+                    i++;
+                }
             }
         }
-        if (a[l] == minELe || a[r] == minELe || a[l] == maxEle || a[r] == maxEle)
-        {
-            cout << -1 << endl;
-        }
-        else
-            cout << l + 1 << " " << r + 1 << endl;
+        cout << ans << endl;
     }
 }
