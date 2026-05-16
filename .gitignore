@@ -1,3 +1,19 @@
-# Executables
+# Executables and compiled files
 *.exe
+*.out
+*.app
 *.o
+*.obj
+
+# Libraries
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
