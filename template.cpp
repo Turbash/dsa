@@ -1,7 +1,7 @@
-#pragma GCC optimize("O3")
 #include<bits/stdc++.h>
 
 using namespace std;
+using ll = long long;
 using vi = vector<long long>;
 
 void solve() {
